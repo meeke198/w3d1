@@ -41,17 +41,32 @@ class Array
     end
 
     def my_flatten
-        
+    #    return [] if self.empty?
+       flattened = []
+          self.my_each do |ele|
+            if ele.is_a?(Integer)
+                flattened << ele
+            else
+                flattened += ele.my_flatten
+            end
+          end  
+       flattened 
+    end
+
+    def my_zip(*args)
+        result = Array.new(self.length){Array.new(args.length + 1)}
+        args.unshift(self)
+
     end
 
 
 end
-
-a = [1, 2, 3]
-p a.my_any? { |num| num > 1 } # => true
-p a.my_any? { |num| num == 4 } # => false
-p a.my_all? { |num| num > 1 } # => false
-p a.my_all? { |num| num < 4 } # => true
+p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten
+# a = [1, 2, 3]
+# p a.my_any? { |num| num > 1 } # => true
+# p a.my_any? { |num| num == 4 } # => false
+# p a.my_all? { |num| num > 1 } # => false
+# p a.my_all? { |num| num < 4 } # => true
 
 # a = [1, 2, 3]
 # p a.my_reject { |num| num > 1 } # => [1]
