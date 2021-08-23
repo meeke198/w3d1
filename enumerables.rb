@@ -76,15 +76,42 @@ class Array
 
         dup
     end
+    def my_join(seperator="")
+        new_str = ""
+        (0...self.length).to_a.my_each do |i|
+            if i == self.length - 1
+                new_str += self[i] 
+            else
+                new_str += self[i] + seperator
+            end
+        end
+        new_str
+
+    end
+
+    def my_reverse
+        new_arr = []
+        self.my_each do |ele|
+            new_arr = [ele] + new_arr
+        end
+        new_arr
+    end
 
 
 end
 
-a = [ "a", "b", "c", "d" ]
-p a.my_rotate         #=> ["b", "c", "d", "a"]
-p a.my_rotate(2)      #=> ["c", "d", "a", "b"]
-p a.my_rotate(-3)     #=> ["b", "c", "d", "a"]
-p a.my_rotate(15)     #=> ["d", "a", "b", "c"]
+# p [ "a", "b", "c" ].my_reverse   #=> ["c", "b", "a"]
+# p [ 1 ].my_reverse               #=> [1]
+
+# a = [ "a", "b", "c", "d" ]
+# p a.my_join         # => "abcd"
+# p a.my_join("$")    # => "a$b$c$d"
+
+# a = [ "a", "b", "c", "d" ]
+# p a.my_rotate         #=> ["b", "c", "d", "a"]
+# p a.my_rotate(2)      #=> ["c", "d", "a", "b"]
+# p a.my_rotate(-3)     #=> ["b", "c", "d", "a"]
+# p a.my_rotate(15)     #=> ["d", "a", "b", "c"]
 
 # a = [ 4, 5, 6 ]
 # b = [ 7, 8, 9 ]
